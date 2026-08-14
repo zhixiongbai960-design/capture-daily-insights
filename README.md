@@ -12,6 +12,26 @@
 - 追踪具体行动；
 - 生成月度、季度和半年回顾。
 
+## 一句话安装
+
+复制下面整句话，发送给支持 Skill 的 Agent：
+
+```text
+请使用 Skill Installer 安装这个 Agent Skill：
+https://github.com/zhixiongbai960-design/capture-daily-insights/tree/main/capture-daily-insights
+安装完成后告诉我；如果需要重新加载或从下一轮对话开始生效，也请明确说明。
+```
+
+安装完成后，第一次使用可以直接说：
+
+```text
+使用 $capture-daily-insights，在当前工作区为我建立一个最小个人觉察档案。我的 subject_id 是 your-id，记录目录使用 insights/。
+```
+
+以后只需要自然表达，并在需要时补一句“帮我记一下”：
+
+> 我今天意识到，真正让我不舒服的不是方案被拒绝，而是责任没有说清楚。帮我记一下。
+
 ## 为什么做这个 Skill
 
 觉察记录不是流水账。它关注的是：
@@ -42,31 +62,11 @@ capture-daily-insights/
 
 仓库根目录的 `README.md` 和 `LICENSE` 用于公开发布，不属于 Skill 运行时必需文件。
 
-## 安装
-
-将仓库中的 `capture-daily-insights` 文件夹放入 Agent 能读取的 Skill 目录，然后重新加载 Agent。
-
-对于 Codex，可放入个人 Skills 目录，最终路径类似：
-
-```text
-<codex-skills-directory>/capture-daily-insights/SKILL.md
-```
-
-也可以不安装，直接把 `SKILL.md` 及其 `references/`、`scripts/` 一起交给支持读取本地文件的 Agent。
-
-## 最快开始
-
-第一次使用时告诉 Agent：
-
-> 使用 `$capture-daily-insights`，在当前工作区为我建立一个最小个人觉察档案。我的 subject_id 是 `your-id`，记录目录使用 `insights/`。
-
-之后可以直接说：
-
-> 我今天意识到，真正让我不舒服的不是方案被拒绝，而是责任没有说清楚。帮我记一下。
-
-或者提供聊天、会议和语音转写：
+## 也可以整理聊天或会议
 
 > 下面是一段会议记录。先区分各方立场，再把属于我的观点整理成觉察。如果有多个独立主题，可以拆分。
+
+如果所用 Agent 不支持自动安装 Skill，可以手动下载仓库中的 `capture-daily-insights/` 文件夹，整体放入该 Agent 的个人 Skill 目录。不要只复制 `SKILL.md`，否则模板、回顾规则和检查脚本不会一起安装。
 
 ## 最低档案结构
 

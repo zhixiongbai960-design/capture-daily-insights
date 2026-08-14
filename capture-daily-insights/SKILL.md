@@ -15,8 +15,10 @@ Resolve the archive root in this order:
 
 1. Use the path explicitly provided by the user.
 2. Use the current workspace when its `README.md` declares `archive_type: personal-insight-archive` or an equivalent single-person archive.
-3. Use an existing workspace directory named `insights`, `觉察记录`, or `日常觉察记录`.
-4. If no archive exists and the user asked to record, initialize the minimum archive described in `archive-layout.md` inside the current workspace.
+3. Use an existing workspace directory named `insights`, `觉察记录`, or `日常觉察记录` only when it contains `INDEX.md` or the workspace otherwise identifies it as the insight archive.
+4. If no archive exists and the user asked to record, initialize the minimum archive described in `archive-layout.md` under `personal-insight-archive/` in the current workspace.
+
+Do not ask the user to choose a `subject_id`, archive path, directory name, or schema before the first record. Use the safe defaults from `archive-layout.md`. Ask only when no writable workspace exists or when creating the default directory would overwrite unrelated data.
 
 Before writing, read the archive `README.md`, the insight index, and any information-management rules that exist. Read the current profile only when the new material could affect current identity, projects, collaboration rules, or long-term preferences.
 

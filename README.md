@@ -17,20 +17,15 @@
 复制下面整句话，发送给支持 Skill 的 Agent：
 
 ```text
-请使用 Skill Installer 安装这个 Agent Skill：
+请使用 Skill Installer 安装下面这个 Agent Skill，安装完成后告诉我：
 https://github.com/zhixiongbai960-design/capture-daily-insights/tree/main/capture-daily-insights
-安装完成后告诉我；如果需要重新加载或从下一轮对话开始生效，也请明确说明。
 ```
 
-安装完成后，第一次使用可以直接说：
-
-```text
-使用 $capture-daily-insights，在当前工作区为我建立一个最小个人觉察档案。我的 subject_id 是 your-id，记录目录使用 insights/。
-```
-
-以后只需要自然表达，并在需要时补一句“帮我记一下”：
+安装完成后，不需要做任何初始化或目录配置。直接说出你的真实想法，并补一句“帮我记一下”：
 
 > 我今天意识到，真正让我不舒服的不是方案被拒绝，而是责任没有说清楚。帮我记一下。
+
+第一次记录时，Agent 会自动创建最小档案；以后继续使用同一个档案。只有你主动要求更换存放位置时，才需要提供目录。
 
 ## 为什么做这个 Skill
 
@@ -70,6 +65,8 @@ capture-daily-insights/
 
 ## 最低档案结构
 
+以下结构由 Agent 自动创建，普通用户不需要手动配置：
+
 ```text
 personal-insight-archive/
 ├── README.md
@@ -98,7 +95,7 @@ python3 capture-daily-insights/scripts/archive_check.py --archive /path/to/perso
 
 校验器检查：
 
-- `README.md` 和 `subject_id`；
+- `README.md` 和由 Agent 自动维护的内部档案标识；
 - 觉察目录与 `INDEX.md`；
 - 标准记录标题；
 - 重复永久序号；

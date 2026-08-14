@@ -1,4 +1,4 @@
 interface:
   display_name: "Daily Insight Journal"
   short_description: "Turn reflections into a structured personal knowledge archive"
-  default_prompt: "Use $capture-daily-insights to save this reflection in my personal insight archive."
+  default_prompt: "Use $capture-daily-insights to record this reflection, automatically creating my personal insight archive if needed."

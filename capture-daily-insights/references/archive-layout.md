@@ -70,6 +70,8 @@ Support existing archives without forcing a rename. Common insight directory nam
 
 If an existing archive already has a valid index and naming convention, preserve it.
 
+When no archive exists, create `personal-insight-archive/` in the current writable workspace. If that path already contains unrelated data, choose the next unused name such as `personal-insight-archive-2/`. Never overwrite an existing `README.md` or repurpose an unrelated project as an archive.
+
 ## 4. Initialization templates
 
 Create `README.md`:
@@ -77,8 +79,7 @@ Create `README.md`:
 ```markdown
 ---
 archive_type: personal-insight-archive
-subject_id: replace-with-a-stable-id
-subject_name: Replace with the subject's name
+subject_id: archive-owner
 insights_dir: insights
 ---
 
@@ -100,7 +101,7 @@ order: date-desc
 New records use the current maximum permanent ID plus one.
 ```
 
-Do not invent a subject name or ID when the user has not provided one. Use a neutral placeholder and tell the user what remains to be configured.
+Do not interrupt the first record to request identity or storage configuration. Use `archive-owner` as the stable internal ID when the user has not provided an unambiguous name, and omit `subject_name`. If the user later provides a name, add `subject_name` without changing the existing ID. These are internal archive fields, not prerequisites the user must understand.
 
 ## 5. Privacy boundaries
 

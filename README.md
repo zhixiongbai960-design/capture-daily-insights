@@ -1,4 +1,4 @@
-# Capture Daily Insights
+# Capture Daily Insights 日常觉察记录
 
 把日常对话、决策、经历和会议材料中的有效认知，沉淀为可检索、可关联、可回顾的个人认知资产。
 

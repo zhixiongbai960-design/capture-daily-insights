@@ -1,97 +1,89 @@
-# Record format
+# 记录格式
 
-## Contents
+入口：[Skill](../SKILL.md)。默认目录读取档案 README，不写死。
 
-1. New record
-2. Supplement an existing record
-3. Index entry
-4. Tags and dates
+## 新记录
 
-## 1. New record
-
-Use the archive's language. Preserve the subject's first-person voice.
+文件名：YYYY-MM-DD_主题关键词.md。date 优先事件／发表日期，未知则使用归档日并解释，不伪造具体日期。
 
 ```markdown
 ---
 record_type: daily-insight
-subject_id: stable-subject-id
+record_schema: insight-v3
+subject_id: <读取档案标识>
 date: YYYY-MM-DD
-source_type: conversation | experience | decision | external-content | chat-history
+recorded_at: YYYY-MM-DD
+source_type: conversation
 status: active
+emotion_tags: []
 ---
 
-# Topic title
+# 主题标题
 
-**Date:** YYYY-MM-DD
-**Tags:** #tag1 #tag2 #tag3
+**标签：** #主题1 #主题2
 
----
+## 背景与来源
 
-## Background
+写明触发场景、事件／发表日期（未知就说明）、归档日期、参与者及各来源链接。
+截图只能证明截图可见的信息；不据时间标签推定完整日期。
 
-Describe the trigger, scene, event, and necessary participants. Keep original timestamps for chat or meeting material. Use aliases for sensitive participants when appropriate.
+## 原话记录
 
-## Core viewpoint
+完整保留本主题的连续表达，不修辞、不纠正原文。完整材料过长时链接已归档来源及时间／段落范围，并保留足以理解观点的连续片段。
+有多位发言者时标明归属；外部原文不能写成用户原话。
+必要的转写纠正另列“整理说明”，区分已确认纠正与待确认。
 
-Preserve the subject's own words, structure, lists, tables, metaphors, and tone. Bold only unusually precise or powerful original sentences.
+## 情绪与态度
 
-## Extended thinking
+| 维度 | 内容 | 原话依据 | 确定程度 |
+| --- | --- | --- | --- |
+| 情绪 | 未明显表达或有证据的情绪 | 对应原句 | 明确表达／推测 |
+| 态度与立场 | 支持、反对、保留等 | 对应原句 | 明确表达／推测 |
+| 触发点 | 具体事件或矛盾 | 对应原句 | 明确表达／推测 |
 
-### Why this is worth preserving
+二创保留锚点：语气、节奏、比喻与不可丢失的背景；没有则不强写。
 
-Use one to three sentences. Make a judgment about durable value, not a generic reaction.
+## 核心观点
 
-### Quotable line
+以第一人称、用户原话为主重组判断链，保留编号和表达强度。不追加用户没有说出的结论。
 
-Extract only an original sentence that can stand alone without changing its meaning. Otherwise write: `No separate quote needed.`
+## 延伸思考
 
-### Historical connections
+以下是 Agent 分析，不代表用户已经采纳。
 
-- Related to YYYY-MM-DD, “Title”: explain the continuation, correction, conflict, counterexample, or shared mechanism.
+### 这条观点的价值
+1—3 句话。
 
-When none exists, write: `No directly related historical record.`
+### 原话金句
+必须在原始材料中逐字可找到；没有则写暂无。
 
-### Direct application, when relevant
+### 二创候选（按需）
+明确是 Agent 改写，不冒充原话，不额外渲染情绪，不默认生成营销文案。提示涉及的匿名化和语境限制。
 
-Describe a concrete application. When evidence is insufficient, do not force one.
+### 历史关联
+- [日期 标题](相对路径.md)：延续／深化／修正／反例／适用边界不同，说明原因。
+没有则写暂无直接关联的历史记录。
+
+### 应用与行动（如适用）
+具体建议注明“Agent 建议，待用户确认”。用户已确认的动作才作为承诺追踪。
 ```
 
-## 2. Supplement an existing record
+source_type 可用 conversation、experience、decision、external-content、chat-history、mixed。混合材料分别标注来源。
+主题标签建议 2—5 个；情绪使用通用词（如欣喜、愤怒、担忧、无奈），不得造标签替代证据。情绪标签须与表格一致。
 
-Do not rewrite the original body. Append:
+## 补充
 
-```markdown
-## YYYY-MM-DD supplement
+原正文不改写，追加“YYYY-MM-DD 补充”：背景与来源、本次完整原话、本次情绪与态度、与原判断的关系。允许认知变化，不追溯性美化。
+旧记录缺原话只在找到原始材料后补，找不到就注明缺失，不反向生成所谓原话或情绪。
 
-### New context
-
-Explain the new event or conversation.
-
-### Added viewpoint
-
-Preserve the subject's current words.
-
-### Effect on the earlier judgment
-
-State whether this continues, corrects, contradicts, supplies a counterexample, or adds an applicability boundary.
-```
-
-## 3. Index entry
+## 索引
 
 ```markdown
 ## YYYY-MM-DD
-
-### 001 Topic title
-
-- Record: [Topic title](YYYY-MM-DD_topic.md)
-- Core idea: one faithful sentence summarizing the subject's judgment
+### 001 主题
+- 详细记录：[主题](YYYY-MM-DD_主题关键词.md)
+- 核心观点：一句摘要
 ```
 
-IDs are permanent. Assign the global maximum plus one and never renumber old entries.
-
-## 4. Tags and dates
-
-- Use two to five stable, reusable topic tags.
-- Do not diagnose personality through tags.
-- Prefer the event or decision date. Use the recording date when the event date is unknown, and explain that in `Background`.
-- Treat current projects, prices, relationships, and plans as dated status, not permanent facts.
+序号为永久 ID，最大值加一，不因排序重编号。日期倒序，同日 ID 倒序。
+原始材料、画像、复盘也须在相应索引挂接；纯附件从对应笔记链接即可。

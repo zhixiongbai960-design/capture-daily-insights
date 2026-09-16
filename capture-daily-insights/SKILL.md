@@ -1,117 +1,49 @@
 ---
 name: capture-daily-insights
-description: Capture and maintain a single person's reflections as a structured, portable personal knowledge archive. Use when the user asks to record or save an insight, shares a reusable viewpoint, makes an important decision with reasons, extracts a lesson from experience, notices a pattern or counterintuitive idea, responds personally to external material, supplies chat or meeting history for organization, or requests monthly contradiction reviews, quarterly topic consolidation, half-year behavior analysis, index maintenance, or action follow-up. Do not use for temporary factual queries, pure task execution, casual chat without personal judgment, or external content the user has not adopted or commented on.
+description: 初始化可移植个人觉察档案，通过空白问卷或分轮访谈梳理热爱、擅长、价值观和人生事件，记录用户的原话、情绪与洞察，开展月度、季度和年度复盘。适用于“初始化个人档案”“了解自己”“记一下”、批量整理个人表达和复盘请求；不将纯查询、闲聊或未被用户采纳的外部观点自动归档。
 ---
 
-# Capture Daily Insights
+# 个人觉察档案
 
-Maintain a personal cognitive asset archive for exactly one subject. Treat other people, organizations, projects, and sources only as context for the subject's experiences and judgments.
+把用户的表达保存为有来源、可回顾、可二创的个人认知资产。每个档案只围绕一个人；用户与他人、客户、公司、Agent 的观点和事实必须分开。
 
-## Locate or initialize the archive
+## 按意图选择流程
 
-Read [references/archive-layout.md](references/archive-layout.md) completely.
+- 初始化档案：完整读取 [初始化说明](references/initialization.md)。安装不代表已初始化；首次相关请求才创建。用户直接要求记录而档案不存在时，可先初始化最小档案，再完成记录，不要求先答问卷。
+- 梳理个人信息：完整读取 [个人探索](references/personal-discovery.md)。填写模板与对话访谈可混用，也可与日常记录并行。
+- 日常记录：完整读取 [记录格式](references/record-format.md)。
+- 月度、季度、年度复盘：完整读取 [复盘规则](references/reviews.md)。
+- 提供定时任务创建提示词：完整读取 [任务提示词](references/automation-prompts.md)。本 Skill 只提供提示词，不自行创建任务，不声称定时任务已经启用。
+- 各流程及 [初始化脚本](scripts/init_archive.py)、[检查脚本](scripts/archive_check.py) 独立按需使用，不一次加载全部材料。
 
-Resolve the archive root in this order:
+## 定位与兼容
 
-1. Use the path explicitly provided by the user.
-2. Use the current workspace when its `README.md` declares `archive_type: personal-insight-archive` or an equivalent single-person archive.
-3. Use an existing workspace directory named `insights`, `觉察记录`, or `日常觉察记录` only when it contains `INDEX.md` or the workspace otherwise identifies it as the insight archive.
-4. If no archive exists and the user asked to record, initialize the minimum archive described in `archive-layout.md` under `personal-insight-archive/` in the current workspace.
+先使用用户明确指定的档案路径，再查当前工作目录的 README 或其“个人觉察档案/README.md”“personal-insight-archive/README.md”。多个档案且目标不清楚时询问；不要跨人合并。不得扫描用户整个电脑寻找档案。
+读取目标 README 和其中声明的本地管理规则，沿用现有目录、身份标识、隐私边界和路由。默认新目录见初始化说明；用户无需输入 subject_id，它是自动产生的内部标识。
+旧库包含 01_日常觉察记录 时继续使用，不迁移、不重编号、不重建画像。已有公司决策等权威位置时遵守本地规则；没有其他 Skill 时本 Skill 能独立记录，不强制依赖其他 Skill。
+不把工作档案存到 Skill 安装目录，不内置任何人的姓名、公司和机器路径。
 
-Do not ask the user to choose a `subject_id`, archive path, directory name, or schema before the first record. Use the safe defaults from `archive-layout.md`. Ask only when no writable workspace exists or when creating the default directory would overwrite unrelated data.
+## 用户控制优先
 
-Before writing, read the archive `README.md`, the insight index, and any information-management rules that exist. Read the current profile only when the new material could affect current identity, projects, collaboration rules, or long-term preferences.
+“先讨论／暂不记录”优先于所有自动记录条件，此时不写文件。
+“我批量发，等发完”：等待用户说发完再整理；不要把每次输入立即归档。
+用户明确要求记录则直接执行；隐式触发仅在确有个人判断和沉淀价值时使用，模糊时先建议记录。
+纯任务过程、临时查询、无判断的事实转述、未采纳的外部材料，不自动当作个人觉察。用户要求保存纯材料时保存为来源，不伪造观点。
 
-## Decide whether to record
+## 记录流程与保真约束
 
-Record when any of these applies:
+1. 读取索引，搜索同日和相关主题，完整阅读真正相关的候选记录。避免重复，同一论证链不强拆；不同可独立检索的观点可以拆分。
+2. 按记录格式分开原话、情绪与态度、核心观点、外部声音、Agent 分析。完整来源和相关连续原话保留语气、编号、比喻，不用摘要替代。
+3. 原始文本不静默修正。需要纠正转写时另列整理说明；已确认的别名可在整理版统一，歧义待确认。
+4. 原话金句必须在原始材料中逐字可找到；Agent 改写只能标为“二创候选”，不得冒充原话。
+5. 情绪限定为有原话证据的提取，分“明确表达／推测”；推测标明可能。不猜动机，不把一次情绪升级为人格。没有依据写未明显表达。
+6. 区分讨论中、Agent 建议、用户已确认、已执行、已放弃。未经采纳的建议不算承诺；没有后续记录不等于没有行动。
+7. 保存 Markdown；已有记录补充用带日期的新段落，不覆盖旧观点。附件归档后用相对链接，保留来源日期；来源日期未知时不猜。
+8. 更新日期倒序索引，永久序号取最大值加一且不复用。所有新增 Markdown 需从索引或正式文档链接到，保持档案可导航。附件与历史记录也用相对链接。
+9. 有 Python 时运行检查脚本；无 Python 则人工检查索引、字段、链接，并说明未运行脚本。仅修复本次导致的问题，不擅自重写历史记录。
+10. 简短反馈记录主题、链接和一句核心价值。记录不是自动创作文案，更不是发布授权。
 
-- The user explicitly says to record, save, or note something.
-- The user states a reusable personal viewpoint, judgment, pattern, or counterintuitive idea.
-- The user makes an important choice and explains why.
-- The user extracts a reusable lesson from an experience.
-- The user responds to external material with agreement, disagreement, correction, or personal inspiration.
-- The user provides chat, meeting, or voice-transcript material for organization.
+## 画像与隐私
 
-Do not record:
-
-- Temporary lookups or pure task execution.
-- Casual conversation with no durable personal judgment.
-- Pure factual retelling with no personal interpretation.
-- External content the user has not personally adopted or discussed.
-- Agent-generated ideas the user has not confirmed.
-
-When the user explicitly asks to record, proceed without asking for another confirmation. When the trigger is implicit and ambiguous, suggest recording instead of creating a low-value file.
-
-## Verify ownership of every statement
-
-Separate four voices before writing:
-
-1. **Subject's own words**: place in `Core viewpoint`; preserve tone and structure.
-2. **Other people or external sources**: place in `Background`; name the source or use a privacy-safe alias.
-3. **Subject's response to external material**: record only the agreement, disagreement, addition, or correction the subject actually expressed.
-4. **Agent inference**: place only in `Extended thinking`; label it as analysis or a hypothesis.
-
-Never turn another person's business, identity, or opinion into the subject's information. Never turn one emotion or one statement into a permanent personality conclusion.
-
-## Create or update records
-
-Read [references/record-format.md](references/record-format.md) completely and follow it.
-
-Before saving:
-
-1. Search same-date, same-topic, and near-synonym filenames and index entries.
-2. Append a dated supplement to an existing record when the new material extends the same insight.
-3. Create separate records only when the material contains independent themes that users will need to retrieve separately.
-4. Preserve the user's numbering, lists, tables, metaphors, and strong original sentences.
-5. Do not beautify, academicize, or overinterpret the user's voice.
-
-Save records as `YYYY-MM-DD_topic-keywords.md` in the configured insights directory.
-
-## Update the index and actions
-
-For every new record:
-
-1. Assign the global maximum permanent index number plus one. Never reuse an ID.
-2. Sort index entries by date descending and, within a date, by ID descending.
-3. Add the title, relative link, and one-sentence summary.
-4. Add an action to the action tracker only when it is concrete, observable, and can later be marked `observing`, `needs confirmation`, `not started`, `implemented`, or `abandoned`.
-
-Link historical insights only when there is a real continuation, correction, conflict, counterexample, or shared mechanism. Do not connect entries merely because they share keywords.
-
-## Propagate carefully
-
-Default to adding only the insight and index entry.
-
-Update a current profile only when:
-
-- The user corrects an existing fact.
-- The record contains an important current identity, project, collaboration, or status change.
-- The user confirms a durable rule or preference.
-- A pattern recurs across time and has behavioral or outcome evidence.
-
-Preserve historical records even when the user's view changes. Add a dated note rather than rewriting the past to match the present.
-
-## Run periodic reviews
-
-For monthly, quarterly, or half-year reviews, read [references/review-system.md](references/review-system.md) completely and execute only the requested period.
-
-Reviews exist to reveal change and close action loops, not to produce attractive summaries. Present contradictions without moral judgment. Distinguish changed beliefs, changed contexts, unfulfilled commitments, and genuine inconsistency.
-
-## Validate and report
-
-When the archive uses the standard layout, run:
-
-```bash
-python3 <skill-directory>/scripts/archive_check.py --archive <archive-root>
-```
-
-Fix problems caused by the current change. Report pre-existing issues without rewriting unrelated historical material.
-
-Finish with a concise response containing:
-
-- The recorded topic and file link.
-- One sentence explaining its core value.
-- A short note if records were split, the profile changed, or validation found issues.
-
-Do not repeat a long essay after the files have already been written.
+画像不是初始化门槛。用户更正事实、确认长期偏好，或多个跨时间证据支持某个模式时，才增补画像，链接证据并区分事实和假设。单条情绪不构成人格、MBTI 或心理诊断。
+原始回答、截图、客户姓名、家庭经历默认私密。二创须保留语境并提示匿名化；未授权不上传、公开或发送。Skill 包内仅有空白模板和方法，不包含任何用户答案。

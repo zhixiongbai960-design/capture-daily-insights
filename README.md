@@ -166,6 +166,28 @@ python3 capture-daily-insights/scripts/archive_check.py --archive /path/to/perso
 
 家庭、客户、合同、金额、联系方式及未脱敏对话默认私密。二创和公开分享前检查来源、语境和匿名化；Skill 不自动上传或发布任何档案。
 
-## License
+## 使用许可
 
-MIT
+**个人非商业学习和使用免费；商业使用须事先取得书面授权。** 企业内部业务使用、客户交付、付费培训及产品集成等均属于需要授权的范围。详见 [LICENSE](LICENSE)。
+
+本项目公开提供源码或资料，采用非商业限制许可，不属于允许自由商业使用的标准开源许可。
+
+历史 MIT 授权仍然有效，新条款不追溯撤回旧授权。详见 [历史授权说明](licenses/legacy_notice.md)。
+
+## 作者与联系
+
+**白志雄 · 志雄 AI FDE**<br>
+志亚科技创始人 · 企业 AI 落地 FDE · DataWhale FDE 100 先锋人物<br>
+8 年 IT 从业经验，前世界 500 强 IT 项目经理。聚焦企业 AI 咨询、培训与定制实施。
+
+**做 AI 时代企业真正需要的解决方案。**
+
+- 公司：武汉市志亚科技有限公司
+- 微信：`baizhixiongbai`（业务沟通与商业授权）
+- 电话：`15827791536`
+- 公众号：**志雄 AI FDE**（关注企业 AI 落地实践与 FDE 方法）
+- GitHub：[zhixiongbai960-design](https://github.com/zhixiongbai960-design)
+
+| 微信 · 业务沟通 | 公众号 · 扫码关注 |
+| :---: | :---: |
+| <img src="assets/brand/wechat.png" width="180" alt="白志雄个人微信二维码"> | <img src="assets/brand/publication.png" width="180" alt="志雄 AI FDE 公众号二维码"> |
